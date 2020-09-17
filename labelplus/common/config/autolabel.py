@@ -56,6 +56,7 @@ OP_IS_NOT = "is not"
 OP_STARTS_WITH = "starts with"
 OP_ENDS_WITH = "ends with"
 OP_MATCHES_REGEX = "matches regex"
+OP_DOESNT_MATCH_REGEX = "doesn't match regex"
 OP_CONTAINS_WORDS = "contains words"
 
 OPS = (
@@ -66,6 +67,7 @@ OPS = (
   OP_STARTS_WITH,
   OP_ENDS_WITH,
   OP_MATCHES_REGEX,
+  OP_DOESNT_MATCH_REGEX,
   OP_CONTAINS_WORDS,
 )
 
@@ -85,6 +87,7 @@ OP_FUNCS = {
   OP_STARTS_WITH: lambda x,y,z: re.search('^' + re.escape(y), x, z),
   OP_ENDS_WITH: lambda x,y,z: re.search(re.escape(y) + '$', x, z),
   OP_MATCHES_REGEX: lambda x,y,z: re.search(y, x, z),
+  OP_DOESNT_MATCH_REGEX: lambda x,y,z: OP_FUNCS[OP_MATCHES_REGEX](x, y, z),
   OP_CONTAINS_WORDS:
     lambda x,y,z: all(OP_FUNCS[OP_CONTAINS](x, s, z) for s in y.split()),
 }
@@ -114,7 +117,7 @@ def find_match(props, rules, match_all=False, use_unicode=True):
     values = props.get(rule[FIELD_PROP]) or []
     op = rule[FIELD_OP]
     op_func = OP_FUNCS[op]
-    negate = op in [OP_DOESNT_CONTAIN, OP_IS_NOT]
+    negate = op in [OP_DOESNT_CONTAIN, OP_IS_NOT, OP_DOESNT_MATCH_REGEX]
 
     flags = re.UNICODE if use_unicode else 0
 
