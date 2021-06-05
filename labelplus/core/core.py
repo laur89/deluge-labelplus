@@ -730,7 +730,9 @@ class Core(CorePluginBase):
       label_id = self.__pending_labels.pop(torrent_id)
       self._set_torrent_label(torrent_id, label_id)
     else:
-      label_id = self._do_autolabel_torrent(torrent_id)
+      target_label_id = self._find_autolabel_match(torrent_id)
+      if target_label_id != labelplus.common.label.ID_NONE:
+        self._do_autolabel_torrent(torrent_id)
 
     if label_id != labelplus.common.label.ID_NONE:
       self._move_torrents([torrent_id])
@@ -751,6 +753,7 @@ class Core(CorePluginBase):
     if torrent_id in self.__pending_magnet_ids:
       self.on_torrent_added(torrent_id, False)
       self.__pending_magnet_ids.remove(torrent_id)
+
 
   @check_init
   def on_torrent_removed(self, torrent_id):
