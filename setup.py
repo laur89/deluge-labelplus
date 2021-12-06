@@ -32,12 +32,13 @@
 #
 
 from setuptools import setup, find_packages
+import os
+import glob
 
 __plugin_name__ = "LabelPlus"
-__author__ = "Ratanak Lun"
-__author_email__ = "ratanakvlun@gmail.com"
+__author__ = "Laur"
 __version__ = "0.3.2.4"
-__url__ = "http://github.com/ratanakvlun"
+__url__ = "https://github.com/laur89/deluge-labelplus"
 __license__ = "GPLv3"
 __description__ = "Assign labels to torrents"
 __long_description__ = """
@@ -52,13 +53,13 @@ setup(
     version=__version__,
     description=__description__,
     author=__author__,
-    author_email=__author_email__,
     url=__url__,
     license=__license__,
     long_description=__long_description__,
 
     packages=find_packages(),
     package_data = __pkg_data__,
+    python_requires='>=3.7',
 
     entry_points="""
     [deluge.plugin.core]
@@ -69,3 +70,15 @@ setup(
     %s = %s:WebUIPlugin
     """ % ((__plugin_name__, __plugin_name__.lower())*3)
 )
+
+# original setup-generated filename: LabelPlus-0.3.2.4-py3.9.egg
+
+# rename generated.egg to exclude the py version from filename:
+list_of_eggs = glob.glob('./dist/*.egg')
+if list_of_eggs:
+    newest_egg = max(list_of_eggs, key=os.path.getmtime)
+
+    os.rename(
+        newest_egg,
+        os.path.join('dist', __plugin_name__ + '-' + __version__ + '.egg')
+    )
