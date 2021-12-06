@@ -730,9 +730,23 @@ class Core(CorePluginBase):
       label_id = self.__pending_labels.pop(torrent_id)
       self._set_torrent_label(torrent_id, label_id)
     else:
-      target_label_id = self._find_autolabel_match(torrent_id)
-      if target_label_id != labelplus.common.label.ID_NONE:
-        self._do_autolabel_torrent(torrent_id)
+      label_id = self._find_autolabel_match(torrent_id)
+      if label_id != labelplus.common.label.ID_NONE:
+        # note we only invoke _do_autolabel_torrent() here if id != ID_NONE, as
+        # otherwise already-set label (via pending_labels) would get reset
+        # even if no autolabels apply (see upstream PR #7)
+        label_id = self._do_autolabel_torrent(torrent_id)
+
+      # TODO: alternative else block:
+      #       the above version will always replace label set via pending_labels if
+      #       an autolabel rule applies.
+      #       this version on the other hand invokes _do_autolabel_torrent() _only_
+      #       if torrent doesn't already have an ID set; to make sure this is only
+      #       executed for magents, we could also add additional [torrent_id in self.__pending_magnet_ids] check to the mix:
+      # label_id = self._get_torrent_label_id(torrent_id)
+      # if label_id == labelplus.common.label.ID_NONE:
+      #   OR, as described above:      if label_id == labelplus.common.label.ID_NONE and torrent_id in self.__pending_magnet_ids:
+        # label_id = self._do_autolabel_torrent(torrent_id)
 
     if label_id != labelplus.common.label.ID_NONE:
       self._move_torrents([torrent_id])
@@ -749,6 +763,11 @@ class Core(CorePluginBase):
       torrent_id = str(alert.handle.info_hash())
     except RuntimeError:
       return
+
+    # TODO: mhertz' version had following assert commented out; think
+    # he might be right, it looks like self._torrents is only initialized at startup,
+    # but later-added torrents are not added to the list? or maybe self._torrents is
+    # a live view??
     assert(torrent_id in self._torrents)
     if torrent_id in self.__pending_magnet_ids:
       self.on_torrent_added(torrent_id, False)
