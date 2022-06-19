@@ -1655,6 +1655,7 @@ class Core(CorePluginBase):
     if label_id != self._get_torrent_label_id(torrent_id):
       self._set_torrent_label(torrent_id, label_id)
       log.debug("Setting torrent %r to label %r", torrent_id, label_id)
+      self._move_torrents([torrent_id])
 
       self._timestamp["mappings_changed"] = datetime.datetime.now()
 
