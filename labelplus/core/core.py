@@ -1715,13 +1715,11 @@ class Core(CorePluginBase):
       else:
         options = self._labels[label_id]["options"]
         if options["download_settings"]:
-          if torrent.handle.is_finished() and \
-              options[labelplus.common.config.PATH_MOVE_COMPLETED]:
-            dest_path = options["%s_path" %
-              labelplus.common.config.PATH_MOVE_COMPLETED]
+          if (torrent.handle.is_finished() and
+              options[labelplus.common.config.PATH_MOVE_COMPLETED]):
+            dest_path = options["%s_path" % labelplus.common.config.PATH_MOVE_COMPLETED]
           elif options[labelplus.common.config.PATH_DOWNLOAD_LOCATION]:
-            dest_path = options["%s_path" %
-              labelplus.common.config.PATH_DOWNLOAD_LOCATION]
+            dest_path = options["%s_path" % labelplus.common.config.PATH_DOWNLOAD_LOCATION]
 
       if dest_path != status["save_path"]:
         torrent.move_storage(dest_path)
