@@ -35,9 +35,11 @@ from setuptools import setup, find_packages
 import os
 import glob
 
+# note the version is managed by zest.releaser:
+version = "0.3.2.4"
+
 __plugin_name__ = "LabelPlus"
 __author__ = "Laur"
-__version__ = "0.3.2.4"
 __url__ = "https://github.com/laur89/deluge-labelplus"
 __license__ = "GPLv3"
 __description__ = "Assign labels to torrents"
@@ -50,7 +52,7 @@ __pkg_data__ = {__plugin_name__.lower():["template/*", "data/*"]}
 
 setup(
     name=__plugin_name__,
-    version=__version__,
+    version=version,
     description=__description__,
     author=__author__,
     url=__url__,
@@ -80,5 +82,5 @@ if list_of_eggs:
 
     os.rename(
         newest_egg,
-        os.path.join('dist', __plugin_name__ + '-' + __version__ + '.egg')
+        os.path.join('dist', __plugin_name__ + '-' + version + '.egg')
     )
