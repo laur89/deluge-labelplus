@@ -242,9 +242,7 @@ class TreeViewDragSourceProxy(object):
 
   def _do_drag_button_press(self, widget, event):
 
-    _, x, y, _ = widget.get_bin_window().get_device_position(event.get_source_device())
-    pos = widget.convert_bin_window_to_tree_coords(x, y)
-    if pos[1] < 0:
+    if event.y < 0:
       return False
 
     log.debug("%s Do button-press at b(%d, %d), Button: %s",
@@ -655,14 +653,9 @@ class TreeViewDragDestProxy(object):
           if src and not same:
 
             targets = src.drag_source_get_target_list() or Gtk.TargetList.new()
-            for t in targets:
-
-              if t[0] == target.name:
-
-                if t[1] & Gtk.TargetFlags.SAME_WIDGET:
-                  target = None
-
-                break
+            res, info = targets.find(atom)
+            if res and info & Gtk.TargetFlags.SAME_WIDGET:
+              target = None
 
           return target
 
