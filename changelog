@@ -1,5 +1,11 @@
 Version 0.3.2.5
 - fix segmentation fault in Wayland and minor bug with drag'n'drop
+0.3.2.6 (unreleased)
+                    
+
+- Nothing changed yet.
+
+
 0.3.2.5 (2022-10-30)
   - see PR #1
 
