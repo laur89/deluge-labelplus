@@ -1,6 +1,6 @@
 Version 0.3.2.5
 - fix segmentation fault in Wayland and minor bug with drag'n'drop
-  - the `get_device_position()` method gives a segfault in wayland. 
+0.3.2.5 (2022-10-30)
   - see PR #1
 
 Version 0.3.2.2
