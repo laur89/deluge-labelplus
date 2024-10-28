@@ -1,53 +1,52 @@
-Version 0.3.2.5
-- fix segmentation fault in Wayland and minor bug with drag'n'drop
-0.3.2.6 (unreleased)
-                    
-
+## 0.3.2.6 (unreleased)
 - Nothing changed yet.
 
-
 0.3.2.5 (2022-10-30)
-  - see PR #1
+- Correct segmentation fault in Wayland
 
-Version 0.3.2.2
+0.3.2.4 (2022-10-07)
+- add zest.releaser
+- add drone-ci integration
+
+## 0.3.2.2
 - Fix mapping without wildcard during config conversion
 
-Version 0.3.2.1
+## 0.3.2.1
 - Fix browse button exception when using remote clients
 
-Version 0.3.2.0
+## 0.3.2.0
 - Add autolabel criteria: label, filename
 - Add option to move torrents to label specific download destination
 - Add preference for resetting torrent options on label unset
 
-Version 0.3.1.0
+## 0.3.1.0
 - Add label assignment functionality to torrent context menu in WebUI
 - Fix move on path changes not being activated for labels with no children
 
-Version 0.3.0.7
+## 0.3.0.7
 - Fix timestamp issue that caused label data to be constantly reloaded
 - Fix removal of unlabeled torrent not being reflected in label tree
 
-Version 0.3.0.6
+## 0.3.0.6
 - Fix UI not being enabled in classic mode
 
-Version 0.3.0.5
+## 0.3.0.5
 - Fix drag-n-drop autoscroll stopping on selected label
 - Fix drag-n-drop not disabling autoscroll/autoexpand on failed drop
 
-Version 0.3.0.4
+## 0.3.0.4
 - Fix preferences not loading when plugin first enabled
 
-Version 0.3.0.3
+## 0.3.0.3
 - Fix event deregister issue that conflicted with other plugins
 
-Version 0.3.0.2
+## 0.3.0.2
 - Remove misbehaving scroll to top hack
 
-Version 0.3.0.1
+## 0.3.0.1
 - Fix dialogs not closing when label is invalidated
 
-Version 0.3.0.0
+## 0.3.0.0
 - Autolabel now uses criteria based matching
 - Test autolabel using a collapsible test area
 - Select multiple label filters
@@ -66,21 +65,21 @@ Version 0.3.0.0
 
 - Fix shared limit not updating when label added/removed
 
-Version 0.2.19.3
+## 0.2.19.3
 - Fix status bar not updating when label removed
 - Improve performance when removing label with many sublabels
 - Check for same path before attemping to move completed torrents
 
-Version 0.2.19.2
+## 0.2.19.2
 - Fix context menu using the wrong label when using "Parent"
 - Allow "Parent" to be used by multiple selected torrents with the same label
 - Re-add ability to jump to selected torrent's label
 - Display base name in dialogs and full name in tooltips
 
-Version 0.2.19.1
+## 0.2.19.1
 - Fix label based subfolder appending full name when selected
 
-Version 0.2.19
+## 0.2.19
 - Set bandwidth limits per label
 - Add label bandwidth usage to status bar
 - Context menu navigation for less reliance on sidebar
@@ -89,40 +88,34 @@ Version 0.2.19
 - Increase compatibility with older versions of Gtk
 - Various behavioral and cosmetic modifications
 
-Version 0.2.18
+## 0.2.18
 - Add auto-label regex support
 
-Version 0.2.17
+## 0.2.17
 - Add ability to jump to label in the sidebar based on a torrent's label
 - Fix bug where only the first tracker was matched when autolabeling
 - Fix bug where torrents set to no label were not moved back to default path
 
-Version 0.2.16
+## 0.2.16
 - Override Deluge 1.3.6 styling so that expanders are indented
 - Various fixes
 
-Version 0.2.15
+## 0.2.15
 - Drag and drop torrents on label tree to label them
 - Move label tree to its own tab for proper scrolling
-0.3.2.5 (unreleased)
---------------------
-
-- Nothing changed yet.
-
-
-0.3.2.4 (2022-10-07)
+- Move completed after recheck (if 'move on label path change' set in prefs)
 - Various fixes
 
-Version 0.2.14
+## 0.2.14
 - Add auto move completed when label path changes (Requires Move Tools)
 - Minor fixes
 
-Version 0.2.13
+## 0.2.13
 - Add label field to add torrent dialog
 - Fix caching bug in torrent add/remove handlers
 
-Version 0.2.12
+## 0.2.12
 - Add client-side caching
 
-Version 0.2.11
+## 0.2.11
 - Add preference to toggle between short/full label names
