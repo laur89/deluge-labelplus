@@ -1,10 +1,10 @@
 ## 0.3.2.6 (unreleased)
 - Nothing changed yet.
 
-0.3.2.5 (2022-10-30)
+## 0.3.2.5 (2022-10-30)
 - Correct segmentation fault in Wayland
 
-0.3.2.4 (2022-10-07)
+## 0.3.2.4 (2022-10-07)
 - add zest.releaser
 - add drone-ci integration
 
@@ -55,14 +55,12 @@
 - Toggle fullname in various places independently
 - Label options added to torrent context menu
 - Revert label options by page
-
 - Dialogs are no longer modal
 - Popup file chooser replaced with browse dialog
 - Sidebar menu operates on right-clicked label without changing filter
 - Sidebar menu no longer contains "All" options
 - Status bar no longer opens label options
 - Dependency on MoveTools removed
-
 - Fix shared limit not updating when label added/removed
 
 ## 0.2.19.3
