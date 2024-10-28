@@ -1,7 +1,7 @@
-recursive-include labelplus
+recursive-include labelplus *
 include README.md
 include setup.py setup.cfg
-include changelog
+include CHANGELOG.md
 exclude .installed.cfg
 exclude .gitattributes
 global-exclude *.pyc
