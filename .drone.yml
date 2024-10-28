@@ -6,13 +6,10 @@ name: default
 steps:
 # note zest does everything, including tagging!
 - name: version-tag-changelog
-  image: python:3-bullseye
+  image: python:3-bookworm
   commands:
-  - git config --global user.email "zest.releaser@example.com"
-  - git config --global user.name "Zest Releaser"
   - pip install zest.releaser
   - fullrelease --no-input
-  #- git push origin --tags
   when:
     branch:
     - master
@@ -22,7 +19,6 @@ steps:
   settings:
     ssh_key:
       from_secret: github_ssh_key
-    branch: "${DRONE_BRANCH}"
     remote: "${DRONE_GIT_SSH_URL}"
     force: false
     followtags: true
@@ -33,6 +29,7 @@ steps:
 - name: build
   image: python:3-alpine
   commands:
+  - pip install --no-cache-dir setuptools
   - python setup.py bdist_egg
   when:
     event: tag
@@ -54,7 +51,7 @@ steps:
 trigger:
   ref:
   - refs/heads/master
-  - refs/heads/develop
+  #- refs/heads/develop
   - refs/heads/feature/*
   - refs/tags/*
 
