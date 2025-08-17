@@ -45,7 +45,7 @@ ID_ALL = "All"
 ID_NONE = "None"
 RESERVED_IDS = (ID_NULL, ID_ALL, ID_NONE)
 
-RE_INVALID_CHARS = re.compile("[\x00-\x1f\x7f\x22\*/:<>\?|\\\\]")
+RE_INVALID_CHARS = re.compile(r"[\x00-\x1f\x7f\x22\*/:<>\?|\\]")
 
 
 def get_parent_id(label_id):
